@@ -1,0 +1,27 @@
+# docker-compose.yml
+services:
+  # Define un servicio, en este caso, una aplicación web llamada 'webapp'.
+  # Este es el nombre que usarás para referirte a este contenedor.
+  webapp:
+    # 'build: .' le dice a Docker que construya una imagen a partir del
+    # Dockerfile que se encuentra en el directorio actual (indicado por el punto).
+    build: .
+
+    # Asigna un nombre específico a este contenedor para que sea fácil
+    # de identificar. Si no se define, Docker creará uno aleatorio.
+    container_name: proyecto-basico-docker-v1
+
+    # Mapeo de puertos: conecta el puerto de la máquina local con el
+    # puerto del contenedor.
+    # El formato es: "PUERTO_LOCAL:PUERTO_CONTENEDOR"
+    # Esto te permite acceder a la aplicación en tu navegador a través de
+    # http://localhost:3000, mientras que el contenedor escucha en su puerto 3000.
+    ports:
+      - "3000:3000"
+
+    # Define volúmenes para sincronizar archivos entre la máquina local y el contenedor.
+    # Esto es crucial para el desarrollo, ya que cualquier cambio que hagas en el
+    # código local se reflejará automáticamente dentro del contenedor.
+    # El formato es: "DIRECTORIO_LOCAL:DIRECTORIO_CONTENEDOR"
+    volumes:
+      - ./src:/usr/src/app
